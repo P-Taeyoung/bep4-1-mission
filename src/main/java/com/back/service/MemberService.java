@@ -1,5 +1,7 @@
 package com.back.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.back.entity.Member;
@@ -19,10 +21,14 @@ public class MemberService {
 	}
 
 	public Member join(String userName, String password, String nickName) {
-		memberRepository.findByUserName(userName).ifPresent(member -> {
+		findByUserName(userName).ifPresent(member -> {
 			throw new DomainException("409-1", "이미 존재하는 username 입니다.");
 		});
 
 		return memberRepository.save(new Member(userName, password, nickName));
+	}
+
+	public Optional<Member> findByUserName(String userName) {
+		return memberRepository.findByUserName(userName);
 	}
 }
