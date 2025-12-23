@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.back.boundedContext.member.entity.Member;
 import com.back.global.jpa.entity.BaseIdAndTime;
+import com.back.shared.post.dto.PostCommentDto;
+import com.back.shared.post.event.PostCommentCreatedEvent;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -12,10 +14,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@Getter
 public class Post extends BaseIdAndTime {
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +41,7 @@ public class Post extends BaseIdAndTime {
 
 		comments.add(postComment);
 
-		author.increaseActivityScore(1);
+		publishEvent(new PostCommentCreatedEvent(new PostCommentDto(postComment)));
 
 		return postComment;
 	}
