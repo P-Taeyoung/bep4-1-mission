@@ -14,10 +14,15 @@ public class Member extends BaseIdAndTime {
 	private String userName;
 	private String password;
 	private String nickName;
+	private int activityScore;
 
 	public Member(String userName, String password, String nickName) {
 		this.userName = userName;
 		this.password = password;
 		this.nickName = nickName;
+	}
+
+	public void increaseActivityScore(int amount) {
+		this.activityScore += amount;
 	}
 }
