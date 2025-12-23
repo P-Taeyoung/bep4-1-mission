@@ -1,5 +1,7 @@
 package com.back.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.back.entity.Member;
@@ -19,5 +21,9 @@ public class PostService {
 
 	public Post write(Member author, String title, String content) {
 		return postRepository.save(new Post(author, title, content));
+	}
+
+	public Optional<Post> findById(int id) {
+		return postRepository.findById(id);
 	}
 }
