@@ -1,9 +1,10 @@
-package com.back.entity;
+package com.back.boundedContext.post.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.back.jpa.entity.BaseIdAndTime;
+import com.back.boundedContext.member.entity.Member;
+import com.back.global.jpa.entity.BaseIdAndTime;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
