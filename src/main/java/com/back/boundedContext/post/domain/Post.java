@@ -1,9 +1,9 @@
-package com.back.boundedContext.post.entity;
+package com.back.boundedContext.post.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.back.boundedContext.member.entity.Member;
+import com.back.boundedContext.member.domain.Member;
 import com.back.global.jpa.entity.BaseIdAndTime;
 import com.back.shared.post.dto.PostCommentDto;
 import com.back.shared.post.event.PostCommentCreatedEvent;
