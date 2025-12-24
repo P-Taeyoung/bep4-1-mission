@@ -1,38 +1,23 @@
 package com.back.boundedContext.member.app;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.back.boundedContext.member.domain.Member;
-import com.back.global.exception.DomainException;
 import com.back.boundedContext.member.out.MemberRepository;
+import com.back.global.exception.DomainException;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService {
-
+public class MemberJoinUseCase {
 	private final MemberRepository memberRepository;
 
-	public long count() {
-		return memberRepository.count();
-	}
-
 	public Member join(String userName, String password, String nickName) {
-		findByUserName(userName).ifPresent(member -> {
+		memberRepository.findByUserName(userName).ifPresent(m -> {
 			throw new DomainException("409-1", "이미 존재하는 username 입니다.");
 		});
 
 		return memberRepository.save(new Member(userName, password, nickName));
-	}
-
-	public Optional<Member> findByUserName(String userName) {
-		return memberRepository.findByUserName(userName);
-	}
-
-	public Optional<Member> findById(int id) {
-		return memberRepository.findById(id);
 	}
 }
