@@ -10,6 +10,7 @@ import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.post.domain.Post;
 import com.back.boundedContext.member.app.MemberFacade;
 import com.back.boundedContext.post.app.PostFacade;
+import com.back.boundedContext.post.domain.PostMember;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,13 +54,13 @@ public class DataInit {
 		if (postFacade.count() > 0) return;
 
 
-		Member user1Member = memberFacade.findByUserName("user1").get();
-		Member user2Member = memberFacade.findByUserName("user2").get();
-		Member user3Member = memberFacade.findByUserName("user3").get();
+		PostMember user1Member = postFacade.findPostMemberByUserName("user1").get();
+		PostMember user2Member = postFacade.findPostMemberByUserName("user2").get();
+		PostMember user3Member = postFacade.findPostMemberByUserName("user3").get();
 
-		Post post1 = postFacade.write(user1Member, "제목1", "내용1").getData();
-		Post post2 = postFacade.write(user1Member, "제목2", "내용2").getData();
-		Post post3 = postFacade.write(user1Member, "제목3", "내용3").getData();
+		Post post1 = postFacade.write(user3Member, "제목1", "내용1").getData();
+		Post post2 = postFacade.write(user3Member, "제목2", "내용2").getData();
+		Post post3 = postFacade.write(user3Member, "제목3", "내용3").getData();
 		Post post4 = postFacade.write(user2Member, "제목4", "내용4").getData();
 		Post post5 = postFacade.write(user2Member, "제목5", "내용5").getData();
 		Post post6 = postFacade.write(user3Member, "제목6", "내용6").getData();
@@ -74,9 +75,9 @@ public class DataInit {
 		Post post5 = postFacade.findById(5).get();
 		Post post6 = postFacade.findById(6).get();
 
-		Member user1Member = memberFacade.findByUserName("user1").get();
-		Member user2Member = memberFacade.findByUserName("user2").get();
-		Member user3Member = memberFacade.findByUserName("user3").get();
+		PostMember user1Member = postFacade.findPostMemberByUserName("user1").get();
+		PostMember user2Member = postFacade.findPostMemberByUserName("user2").get();
+		PostMember user3Member = postFacade.findPostMemberByUserName("user3").get();
 
 		if (post1.hasComments()) return;
 
