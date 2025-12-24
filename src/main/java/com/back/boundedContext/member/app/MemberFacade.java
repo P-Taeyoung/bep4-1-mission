@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.back.boundedContext.member.domain.Member;
 import com.back.boundedContext.member.out.MemberRepository;
+import com.back.global.RsData.RsData;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +25,7 @@ public class MemberFacade {
 	}
 
 	@Transactional
-	public Member join(String userName, String password, String nickName) {
+	public RsData<Member> join(String userName, String password, String nickName) {
 
 		return memberJoinUseCase.join(userName, password, nickName);
 	}
