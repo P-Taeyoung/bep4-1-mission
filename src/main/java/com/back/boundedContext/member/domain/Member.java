@@ -4,10 +4,12 @@ import com.back.global.jpa.entity.BaseIdAndTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "MEMBER_MEMBER")
 @NoArgsConstructor
 @Getter
 public class Member extends BaseIdAndTime {
