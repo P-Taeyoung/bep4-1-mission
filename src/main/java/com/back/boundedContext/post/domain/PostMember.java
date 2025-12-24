@@ -1,5 +1,7 @@
 package com.back.boundedContext.post.domain;
 
+import java.time.LocalDateTime;
+
 import com.back.shared.member.domain.ReplicaMember;
 
 import jakarta.persistence.Entity;
@@ -12,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PostMember extends ReplicaMember {
-	public PostMember(String userName, String password, String nickName) {
-		super(userName, password, nickName);
+	public PostMember(int id, LocalDateTime createTime, LocalDateTime modifyTime, String userName, String password, String nickName) {
+		super(id, createTime, modifyTime, userName, password, nickName);
 	}
 }

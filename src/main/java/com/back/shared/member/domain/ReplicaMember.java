@@ -4,14 +4,13 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @MappedSuperclass
 @Getter
-@Setter(value = AccessLevel.PROTECTED)
+@Setter
 @NoArgsConstructor
 public abstract class ReplicaMember extends BaseMember{
 	@Id
@@ -19,7 +18,10 @@ public abstract class ReplicaMember extends BaseMember{
 	private LocalDateTime createTime;
 	private LocalDateTime modifyTime;
 
-	public ReplicaMember(String userName, String password, String nickName) {
+	public ReplicaMember(int id, LocalDateTime createTime, LocalDateTime modifyTime, String userName, String password, String nickName) {
 		super(userName, password, nickName);
+		this.id = id;
+		this.createTime = createTime;
+		this.modifyTime = modifyTime;
 	}
 }
