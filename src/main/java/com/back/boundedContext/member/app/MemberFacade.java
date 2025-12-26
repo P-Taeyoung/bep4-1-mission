@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.back.boundedContext.member.domain.Member;
-import com.back.boundedContext.member.domain.MemberPolicy;
-import com.back.boundedContext.member.out.MemberRepository;
 import com.back.global.RsData.RsData;
 
 import lombok.RequiredArgsConstructor;
@@ -17,13 +15,12 @@ import lombok.RequiredArgsConstructor;
 public class MemberFacade {
 
 	private final MemberJoinUseCase memberJoinUseCase;
-	private final MemberRepository memberRepository;
-	private final MemberPolicy memberPolicy;
+	private final MemberSupport memberSupport;
+	private final MemberGetRandomSecureTip memberGetRandomSecureTip;
 
 	@Transactional(readOnly = true)
 	public long count() {
-
-		return memberRepository.count();
+		return memberSupport.count();
 	}
 
 	@Transactional
@@ -35,16 +32,15 @@ public class MemberFacade {
 	@Transactional(readOnly = true)
 	public Optional<Member> findByUserName(String userName) {
 
-		return memberRepository.findByUserName(userName);
+		return memberSupport.findByUserName(userName);
 	}
 
 	@Transactional(readOnly = true)
 	public Optional<Member> findById(int id) {
-		return memberRepository.findById(id);
+		return memberSupport.findById(id);
 	}
 
 	public String getRandomSecureTip() {
-		return "비밀번호의 유효기간은 %d 일 입니다."
-			.formatted(memberPolicy.getNeedToChangePasswordDays());
+		return memberGetRandomSecureTip.getRandomSecureTip();
 	}
 }
