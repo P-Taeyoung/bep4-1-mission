@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 
 import com.back.boundedContext.cash.domain.CashMember;
 import com.back.boundedContext.cash.out.CashMemberRepository;
+import com.back.global.eventPublisher.EventPublisher;
+import com.back.shared.cash.dto.CashMemberDto;
+import com.back.shared.cash.event.CashMemberCreateEvent;
 import com.back.shared.member.dto.MemberDto;
 
 import lombok.RequiredArgsConstructor;
@@ -12,18 +15,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CashSyncMemberUseCase {
 	private final CashMemberRepository cashMemberRepository;
+	private final EventPublisher eventPublisher;
 
 	public CashMember syncMember(MemberDto memberDto) {
-		CashMember cashMember = new CashMember(
-			memberDto.getId(),
-			memberDto.getCreateTime(),
-			memberDto.getModifyTime(),
-			memberDto.getUserName(),
-			"",
-			memberDto.getNickName(),
-			memberDto.getActivityScore()
+
+		boolean isNew = !cashMemberRepository.existsById(memberDto.getId());
+
+		CashMember _member = cashMemberRepository.save(
+			new CashMember(
+				memberDto.getId(),
+				memberDto.getCreateTime(),
+				memberDto.getModifyTime(),
+				memberDto.getUserName(),
+				"",
+				memberDto.getNickName(),
+				memberDto.getActivityScore()
+			)
 		);
 
-		return cashMemberRepository.save(cashMember);
+		if (isNew) {
+			eventPublisher.publish(
+				new CashMemberCreateEvent(
+					new CashMemberDto(_member)
+				)
+			);
+		}
+
+		return _member;
 	}
 }
