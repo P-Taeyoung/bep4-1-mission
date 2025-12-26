@@ -1,5 +1,7 @@
 package com.back.boundedContext.cash.app;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +39,16 @@ public class CashFacade {
 		Wallet wallet = new Wallet(holder);
 
 		return walletRepository.save(wallet);
+	}
+
+	@Transactional(readOnly = true)
+	public Optional<CashMember> findMemberByUserName(String userName) {
+		return cashMemberRepository.findByUserName(userName);
+	}
+
+	@Transactional(readOnly = true)
+	public Optional<Wallet> findWalletByHolder(CashMember holder) {
+		return walletRepository.findByHolder(holder);
 	}
 
 }
