@@ -74,6 +74,12 @@ public class ApiV1OrderController {
 			throw new DomainException("400-5", "주문번호가 일치하지 않습니다.");
 		}
 
+		tossPaymentsService.confirmCardPayment(
+			reqBody.paymentKey(),
+			reqBody.orderId(),
+			reqBody.amount()
+		);
+
 		marketFacade.requestPayment(order, reqBody.amount());
 
 		return new RsData<>("202-1", "결제 프로세스가 시작되었습니다.");
