@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import com.back.boundedContext.market.domain.Order;
 import com.back.boundedContext.market.out.OrderRepository;
-import com.back.shared.cash.event.CashOrderPaymentSucceededEvent;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,8 +12,8 @@ import lombok.RequiredArgsConstructor;
 public class MarketCompleteOrderPaymentUseCase {
 	private final OrderRepository orderRepository;
 
-	public void handle(CashOrderPaymentSucceededEvent event) {
-		Order order = orderRepository.findById(event.getOrderDto().getId()).get();
+	public void completePayment(int orderId) {
+		Order order = orderRepository.findById(orderId).get();
 
 		order.completePayment();
 	}
