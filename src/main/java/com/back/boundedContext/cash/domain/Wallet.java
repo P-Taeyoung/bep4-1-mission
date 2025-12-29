@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.back.global.jpa.entity.BaseEntity;
 import com.back.global.jpa.entity.BaseManualAndTime;
+import com.back.shared.cash.dto.WalletDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -32,6 +33,17 @@ public class Wallet extends BaseManualAndTime {
 	public Wallet(CashMember holder) {
 		super(holder.getId());
 		this.holder = holder;
+	}
+
+	public WalletDto toDto() {
+		return new WalletDto(
+			getId(),
+			getCreateTime(),
+			getModifyTime(),
+			holder.getId(),
+			holder.getUserName(),
+			balance
+		);
 	}
 
 	public boolean hasBalance() {

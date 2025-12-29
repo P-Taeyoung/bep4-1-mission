@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.back.boundedContext.cash.app.CashFacade;
+import com.back.boundedContext.cash.domain.Wallet;
 import com.back.shared.cash.dto.WalletDto;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ApiV1WalletController {
 	) {
 		return cashFacade
 			.findWalletByHolderId(holderId)
-			.map(WalletDto::new)
+			.map(Wallet::toDto)
 			.get();
 	}
 }
