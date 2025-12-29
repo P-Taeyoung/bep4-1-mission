@@ -46,8 +46,8 @@ public class CashFacade {
 	}
 
 	@Transactional
-	public void handle(OrderDto orderDto, long pgPaymentAmount) {
-		cashCompleteOrderPaymentUseCase.handle(orderDto, pgPaymentAmount);
+	public void completeOrderPayment(OrderDto orderDto, long pgPaymentAmount) {
+		cashCompleteOrderPaymentUseCase.completeOrderPayment(orderDto, pgPaymentAmount);
 	}
 
 	@Transactional(readOnly = true)
