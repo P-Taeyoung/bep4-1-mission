@@ -9,4 +9,5 @@ import com.back.boundedContext.cash.domain.Wallet;
 
 public interface WalletRepository extends CrudRepository<Wallet, Integer> {
 	Optional<Wallet> findByHolder(CashMember holder);
+	Optional<Wallet> findByHolderId(int holderId);
 }
