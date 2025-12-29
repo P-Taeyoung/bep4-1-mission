@@ -1,5 +1,6 @@
 package com.back.boundedContext.post.app;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -27,5 +28,13 @@ public class PostSupport {
 
 	public Optional<PostMember> findMemberByUserName(String username) {
 		return postMemberRepository.findByUserName(username);
+	}
+
+	public List<Post> findAll() {
+		return postRepository.findAll();
+	}
+
+	public List<Post> findByOrderByIdDesc() {
+		return postRepository.findByOrderByIdDesc();
 	}
 }
