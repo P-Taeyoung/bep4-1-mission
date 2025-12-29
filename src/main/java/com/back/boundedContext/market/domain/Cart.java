@@ -40,4 +40,8 @@ public class Cart extends BaseManualAndTime {
 		this.getItems().add(cartItem);
 		itemsCount++;
 	}
+
+	public void clearItems() {
+		this.getItems().clear();
+	}
 }
