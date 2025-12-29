@@ -2,14 +2,10 @@ package com.back.shared.post.dto;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor(
-	onConstructor_ = @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-)
+@AllArgsConstructor
 @Getter
 public class PostDto {
 	private final int id;
