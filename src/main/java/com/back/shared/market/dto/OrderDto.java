@@ -11,14 +11,14 @@ import lombok.Getter;
 @Getter
 public class OrderDto implements CanGetModelTypeCode {
 	private final int id;
-	private final LocalDateTime createDate;
-	private final LocalDateTime modifyDate;
+	private final LocalDateTime createTime;
+	private final LocalDateTime modifyTime;
 	private final int customerId;
 	private final String customerName;
 	private final long price;
 	private final long salePrice;
-	private final LocalDateTime requestPaymentDate;
-	private final LocalDateTime paymentDate;
+	private final LocalDateTime requestPaymentTime;
+	private final LocalDateTime paymentTime;
 
 	@Override
 	public String getModelTypeCode() {
