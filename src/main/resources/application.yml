@@ -35,6 +35,8 @@ custom:
   global:
     internalBaseUrl: http://localhost:${server.port:8080}
     holdingMemberId: 2
+  payout:
+    readWaitingDays: 14
   member:
     password:
       changeDays: 90

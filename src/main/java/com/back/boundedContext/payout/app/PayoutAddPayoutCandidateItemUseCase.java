@@ -32,7 +32,7 @@ public class PayoutAddPayoutCandidateItemUseCase {
 		OrderDto orderDto,
 		OrderItemDto orderItemDto
 	) {
-		PayoutMember holding = payoutSupport.findHoldingMember().get();
+		PayoutMember system = payoutSupport.findSystemMember().get();
 		PayoutMember buyer = payoutSupport.findMemberById(orderItemDto.getBuyerId()).get();
 		PayoutMember seller = payoutSupport.findMemberById(orderItemDto.getSellerId()).get();
 
@@ -42,7 +42,7 @@ public class PayoutAddPayoutCandidateItemUseCase {
 			orderItemDto.getId(),
 			orderDto.getPaymentTime(),
 			buyer,
-			holding,
+			system,
 			orderItemDto.getPayoutFee()
 		);
 
