@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.back.global.jpa.entity.BaseIdAndTime;
 import com.back.shared.market.dto.OrderDto;
+import com.back.shared.market.event.MarketOrderPaymentCompletedEvent;
 import com.back.shared.market.event.MarketOrderPaymentRequestedEvent;
 
 import jakarta.persistence.CascadeType;
@@ -72,6 +73,11 @@ public class Order extends BaseIdAndTime {
 
 	public void completePayment() {
 		paymentTime = LocalDateTime.now();
+		publishEvent(
+			new MarketOrderPaymentCompletedEvent(
+				toDto()
+			)
+		);
 	}
 
 	public boolean isPaid() {
