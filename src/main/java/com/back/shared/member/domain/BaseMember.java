@@ -26,4 +26,7 @@ public abstract class BaseMember extends BaseEntity {
 		this.activityScore = activityScore;
 	}
 
+	public boolean isSystem() {
+		return "system".equals(userName);
+	}
 }
